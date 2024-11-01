@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dorg7wrbhn4ad"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_55o2b"]
+[ext_resource type="Texture2D" uid="uid://i2as8xtjm3ii" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="1_eg0sn"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_08wu1"]
+polygon = PackedVector2Array(97, 93, 121, 118, 118, 140, 95, 111)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_55o2b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 1166.0
+offset_bottom = 659.0
+color = Color(0.0905396, 0.294187, 0.298057, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(509, 159)
+rotation = -1.37674
+scale = Vector2(3.2377, 2.90625)
+color = Color(0.842557, 1, 0.670412, 1)
+shadow_enabled = true
+texture = ExtResource("1_eg0sn")
+
+[node name="Rays" type="Node2D" parent="PointLight2D"]
+position = Vector2(7.75529, -0.645916)
+rotation = 1.39619
+scale = Vector2(0.342841, 0.310242)
+skew = -0.0409279
+
+[node name="RayCast2D" type="RayCast2D" parent="PointLight2D/Rays"]
+target_position = Vector2(13.9999, 406)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(410, 180)
+occluder = SubResource("OccluderPolygon2D_08wu1")
