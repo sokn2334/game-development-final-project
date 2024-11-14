@@ -1,8 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3p5s16ya63uo"]
+[gd_scene load_steps=14 format=3 uid="uid://c3p5s16ya63uo"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_nom2f"]
 [ext_resource type="Texture2D" uid="uid://b6yyt02t34m44" path="res://player/Idle.png" id="1_vrobx"]
+[ext_resource type="Shader" path="res://player/player.gdshader" id="2_3nppv"]
 [ext_resource type="Texture2D" uid="uid://6ur200n785ge" path="res://player/Run.png" id="3_ihuc0"]
+[ext_resource type="Texture2D" uid="uid://jhkm2ucd5ft7" path="res://player/Jump.png" id="5_0tpru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ata8m"]
+shader = ExtResource("2_3nppv")
+shader_parameter/progress = 1.0
+shader_parameter/outline_color = Color(0, 0.48098, 0.832828, 1)
 
 [sub_resource type="Animation" id="Animation_5pf2k"]
 resource_name = "Idle"
@@ -118,6 +125,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:frame_coords")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gymsf"]
@@ -250,9 +269,117 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_8cgdc"]
+resource_name = "JumpLeft"
+length = 1.00002
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_0tpru")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hkjqx"]
+resource_name = "JumpRight"
+length = 1.00002
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_0tpru")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_whuw5"]
 _data = {
 "Idle": SubResource("Animation_5pf2k"),
+"JumpLeft": SubResource("Animation_8cgdc"),
+"JumpRight": SubResource("Animation_hkjqx"),
 "RESET": SubResource("Animation_60eof"),
 "Walk_left": SubResource("Animation_gymsf"),
 "Walk_right": SubResource("Animation_n3u6c")
@@ -263,7 +390,7 @@ collision_mask = 2
 script = ExtResource("1_nom2f")
 
 [node name="Spirte" type="Sprite2D" parent="."]
-texture_filter = 1
+material = SubResource("ShaderMaterial_ata8m")
 texture = ExtResource("1_vrobx")
 flip_h = true
 hframes = 10
