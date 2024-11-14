@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://uhq112gmicp0"]
+
+[ext_resource type="Texture2D" uid="uid://i2as8xtjm3ii" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="1_rtxcw"]
+[ext_resource type="Script" path="res://sun.gd" id="1_uh5j2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibmic"]
+radius = 23.0952
+
+[sub_resource type="Curve2D" id="Curve2D_eufhy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -625, 4, -642.887, -298.923, 642.887, 298.923, 641, 6)
+}
+point_count = 2
+
+[node name="Sun" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_uh5j2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2.07042, 2.0199)
+shape = SubResource("CircleShape2D_ibmic")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -742.0
+offset_top = -407.0
+offset_right = 436.0
+offset_bottom = 265.0
+scale = Vector2(1.2735, 1.30026)
+color = Color(0.0961031, 0.0334243, 0.00734025, 1)
+
+[node name="Path2D" type="Path2D" parent="."]
+scale = Vector2(0.59837, 0.59837)
+curve = SubResource("Curve2D_eufhy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-625, 4)
+rotation = 0.00157978
+loop = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Path2D/PathFollow2D"]
+energy = 4.65
+shadow_enabled = true
+texture = ExtResource("1_rtxcw")
+texture_scale = 2.19

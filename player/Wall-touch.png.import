@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0recw7nlh0bm"
-path="res://.godot/imported/pngimg.com - light_PNG14418.png-8483edac45b47a4c5e310aaf80cff41b.ctex"
+uid="uid://c00oj3s4y061k"
+path="res://.godot/imported/Wall-touch.png-1ce6f935b83563d89a1f6742198b892c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pngimg.com - light_PNG14418.png"
-dest_files=["res://.godot/imported/pngimg.com - light_PNG14418.png-8483edac45b47a4c5e310aaf80cff41b.ctex"]
+source_file="res://player/Wall-touch.png"
+dest_files=["res://.godot/imported/Wall-touch.png-1ce6f935b83563d89a1f6742198b892c.ctex"]
 
 [params]
 
