@@ -7,6 +7,7 @@ extends Node2D
 var is_switch_on: bool = false
 
 func _on_button_pressed() -> void:
+	$Flip.play()
 	if light_1 != null:
 		light_1.toggle_light()
 	if light_2 != null:

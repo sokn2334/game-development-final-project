@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var TIME : float = 1
 var direction: String
 var game_ended:bool = false 
+var did_squeak:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,3 +41,9 @@ func _on_hurt_body_entered(body: Node2D) -> void:
 
 func game_has_ended():
 	game_ended = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	if did_squeak == false:
+		$Squeak.play()
+	did_squeak = true

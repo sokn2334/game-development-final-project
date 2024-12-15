@@ -1,5 +1,4 @@
 extends Node2D
-@onready var audioplayer = get_node("UI")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

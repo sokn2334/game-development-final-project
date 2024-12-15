@@ -1,8 +1,8 @@
-# Final Project: Proposal
+# Game Development - Final Project
 
-## Description
+## Title: Umbra
 
-For my final project, I would like to create a game where the player is a shadow being that can only exist within shadows. The player will be able to change the location and distance of the light source, the sun, which will change the shadows in the environment. The goal of the game is to line up the shadows to reach the end of the level. This game will be a top down puzzle game consisting of different levels.
+Umbra is a game where you play as a shadow that can only exist in darkness. Your goal is to avoid the light as well as enemies that appear in the dungeon. Use the arrow keys and mouse to navigate around the lights.
 
 ## Storyboard
 ![Storyboard](./storyboard.png)

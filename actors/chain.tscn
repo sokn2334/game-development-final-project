@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c66shnlgceu3n"]
+[gd_scene load_steps=8 format=3 uid="uid://c66shnlgceu3n"]
 
 [ext_resource type="Texture2D" uid="uid://cotfyatqvvbfj" path="res://CastleTiles.png" id="1_v4qrf"]
 [ext_resource type="Script" path="res://actors/light.gd" id="2_5ipcf"]
 [ext_resource type="Texture2D" uid="uid://dc84ify56cm0r" path="res://actors/lightcone2.png" id="3_lxqno"]
+[ext_resource type="AudioStream" uid="uid://c0alvfjn0dtmu" path="res://audio/chain.mp3" id="4_0o5v1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coppc"]
 radius = 4.0
@@ -145,6 +146,10 @@ offset_top = -18.0
 offset_right = -10.0
 offset_bottom = -10.0
 scale = Vector2(4.45479, 4.55864)
+
+[node name="Chain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0o5v1")
+volume_db = -5.0
 
 [connection signal="button_down" from="Light/Button" to="Light" method="_on_button_button_down"]
 [connection signal="button_up" from="Light/Button" to="Light" method="_on_button_button_up"]

@@ -338,7 +338,7 @@ occluder = SubResource("OccluderPolygon2D_wjfhx")
 
 [node name="Player" parent="." instance=ExtResource("4_2t2py")]
 z_index = 1
-position = Vector2(1553, -403)
+position = Vector2(-30, 115)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("5_k0mbw")

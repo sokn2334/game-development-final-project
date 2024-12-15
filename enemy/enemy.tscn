@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1qessb7sa1rp"]
+[gd_scene load_steps=12 format=3 uid="uid://b1qessb7sa1rp"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4372x"]
 [ext_resource type="Texture2D" uid="uid://bafq5y516fdfu" path="res://enemy/Rat_Full_Black.png" id="1_vods8"]
+[ext_resource type="AudioStream" uid="uid://lblvjv0elleq" path="res://audio/rat.mp3" id="2_2wvvv"]
 [ext_resource type="Texture2D" uid="uid://ddent4kdm2tmr" path="res://enemy/Rat_Death_FX.png" id="2_lps0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r48i1"]
@@ -389,6 +390,10 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_4372x")
 
+[node name="Squeak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2wvvv")
+volume_db = -10.0
+
 [node name="EnemySpot0" type="Node2D" parent="."]
 position = Vector2(-14.8428, -6.5968)
 
@@ -428,5 +433,10 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.8246, -19.3715)
+scale = Vector2(3.87562, 2.2683)
+
 [connection signal="body_entered" from="Hurt" to="." method="_on_hurt_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

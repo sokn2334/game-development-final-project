@@ -50,23 +50,28 @@ func in_sun():
 	if timerOn == true:
 		timerOn = false
 		$HealthBar/TimeBeforeHeal.stop()
-
 	if animation.get_current_animation_position() > 1.9:
 		animation.stop()
 	
+	if not $Sizzle.playing and end_screen_on == false:
+		$Sizzle.play()
+	if end_screen_on == true:
+		$Sizzle.stop()
 func not_in_sun():
 	if animation.get_current_animation() == "in_sun":
 		if animation.get_current_animation_position() > 0 and timerOn == false:
 			animation.pause()
 			$HealthBar/TimeBeforeHeal.start()
 			timerOn = true
+	$Sizzle.stop()
 
 func _on_time_before_heal_timeout() -> void:
 	animation.play("in_sun", -1, -1, false)
 	await animation.animation_finished
 	timerOn = false
 
-func _on_button_mouse_entered() -> void:
+func _on_button_mouse_entered() -> void: 
+	$ButtonHover.play()
 	if start_screen_on:
 		var white = Color(0.0,0.0,0.0,1.0)
 		$StartScreen/Start.set("theme_override_colors/font_color",white)

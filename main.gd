@@ -38,7 +38,6 @@ func in_sun():
 	HealthManager.player_in_sun()
 	ShakeBus.trigger_shake()
 	
-	
 func not_int_sun():
 	HealthManager.player_not_in_sun()
 	
