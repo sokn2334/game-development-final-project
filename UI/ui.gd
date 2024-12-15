@@ -14,6 +14,8 @@ func _ready() -> void:
 	HealthManager.not_in_sun.connect(not_in_sun)
 	GameManager.game_over.connect(game_is_over)
 	GameManager.win.connect(game_is_won)
+	GameManager.new_level.connect(going_new_level)
+	$AudioStreamPlayer.play(AudioManager.musicProgress)  
 	if current_scene == "Main":
 		$StartScreen.visible = true
 		$EndScreen.visible = false
@@ -90,6 +92,7 @@ func _on_button_pressed() -> void:
 	$HealthBar.visible = true
 	
 func _on_re_button_pressed() -> void:
+	AudioManager.musicProgress = $AudioStreamPlayer.get_playback_position()   
 	get_tree().reload_current_scene()
 	
 func game_is_over():
@@ -118,5 +121,8 @@ func game_is_won():
 	$HealthBar.visible = false
 	GameManager.game_over_screen_is_on()
 	$WinScreen/AnimationPlayer.play("idle")
+
+func going_new_level():
+	AudioManager.musicProgress = $AudioStreamPlayer.get_playback_position()   
 
 	

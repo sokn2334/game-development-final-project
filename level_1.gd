@@ -37,7 +37,7 @@ func get_pixel_color():
 func in_sun():
 	$Player/Label.visible = true
 	HealthManager.player_in_sun()
-	#ShakeBus.trigger_shake()
+	ShakeBus.trigger_shake()
 	
 func not_int_sun():
 	HealthManager.player_not_in_sun()

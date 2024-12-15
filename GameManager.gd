@@ -4,6 +4,7 @@ signal game_start
 signal game_over
 signal game_over_screen_on
 signal win
+signal new_level
 
 var death_count:float = 1
 
@@ -22,3 +23,6 @@ func game_over_screen_is_on():
 	
 func game_win():
 	win.emit()
+
+func is_new_level():
+	new_level.emit()
