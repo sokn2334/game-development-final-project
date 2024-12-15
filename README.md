@@ -4,8 +4,6 @@
 
 Umbra is a game where you play as a shadow that can only exist in darkness. Your goal is to avoid the light as well as enemies that appear in the dungeon. Use the arrow keys and mouse to navigate around the lights.
 
-## Storyboard
-![Storyboard](./storyboard.png)
 
 ## Inspiration
 #### SCHiM
