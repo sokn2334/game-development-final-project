@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var camera = $Player/Camera2D
 
-var game_started:bool = false 
+var game_started:bool = true 
 var color_bound = 0.1
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +10,8 @@ func _ready() -> void:
 	camera.zoom.x = 1.2
 	camera.zoom.y = 1.2
 	GameManager.game_start.connect(game_has_started)
-
+	GameManager.game_started()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if game_started == true:

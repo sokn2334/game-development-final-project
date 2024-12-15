@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0kcwgjgluxuq"]
+
+[ext_resource type="Script" path="res://actors/flickerlight.gd" id="1_qgqib"]
+[ext_resource type="Texture2D" uid="uid://clg78h7mftykb" path="res://actors/images.png" id="1_rpauw"]
+[ext_resource type="Shader" path="res://actors/light.gdshader" id="2_23nsc"]
+[ext_resource type="Texture2D" uid="uid://cotfyatqvvbfj" path="res://CastleTiles.png" id="2_ejhk8"]
+
+[sub_resource type="Gradient" id="Gradient_8qxui"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ej3px"]
+gradient = SubResource("Gradient_8qxui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rybie"]
+shader = ExtResource("2_23nsc")
+shader_parameter/gradientResolution = 10
+shader_parameter/thickness = 1.0
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+shader_parameter/color = SubResource("GradientTexture1D_ej3px")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd1fq"]
+size = Vector2(17, 50)
+
+[node name="flickerlight" type="Node2D"]
+scale = Vector2(0.569032, 0.569032)
+script = ExtResource("1_qgqib")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -149.0
+offset_top = -110.0
+offset_right = -109.0
+offset_bottom = -70.0
+scale = Vector2(7.65728, 6.28713)
+color = Color(0.897499, 0.499074, 0.629275, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_rybie")
+position = Vector2(0, -24)
+scale = Vector2(0.308931, 0.308931)
+energy = 8.39
+shadow_enabled = true
+texture = ExtResource("1_rpauw")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
+position = Vector2(-1, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ejhk8")
+region_enabled = true
+region_rect = Rect2(69.7556, 192.095, 18.4483, 33.4028)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_wd1fq")

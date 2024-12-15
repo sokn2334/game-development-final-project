@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b12eklwfimp8l"]
+
+[ext_resource type="Script" path="res://actors/lightswitch.gd" id="1_ki2hv"]
+[ext_resource type="Texture2D" uid="uid://cotfyatqvvbfj" path="res://CastleTiles.png" id="1_rcq5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3i1m"]
+size = Vector2(32, 23)
+
+[node name="LightSwitch" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_ki2hv")
+
+[node name="SwitchSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_rcq5t")
+offset = Vector2(0, -9.209)
+region_enabled = true
+region_rect = Rect2(191.249, 8.8322, 32.7249, 18.1242)
+
+[node name="Button" type="Button" parent="SwitchSprite"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -30.0
+offset_top = -26.0
+offset_right = 2.0
+offset_bottom = -4.0
+scale = Vector2(1.82031, 1.89663)
+
+[node name="SwitchBase" type="Sprite2D" parent="."]
+texture = ExtResource("1_rcq5t")
+region_enabled = true
+region_rect = Rect2(191.249, 27.044, 32.7249, 5.61882)
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_c3i1m")
+
+[connection signal="pressed" from="SwitchSprite/Button" to="." method="_on_button_pressed"]

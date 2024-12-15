@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://c66shnlgceu3n"]
+
+[ext_resource type="Texture2D" uid="uid://cotfyatqvvbfj" path="res://CastleTiles.png" id="1_v4qrf"]
+[ext_resource type="Script" path="res://actors/light.gd" id="2_5ipcf"]
+[ext_resource type="Texture2D" uid="uid://dc84ify56cm0r" path="res://actors/lightcone2.png" id="3_lxqno"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coppc"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qdave"]
+radius = 4.0
+height = 25.6602
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qntcp"]
+radius = 9.0
+height = 26.0
+
+[node name="Chain" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -162.0
+offset_top = 66.0
+offset_right = -122.0
+offset_bottom = 106.0
+scale = Vector2(7.65728, 6.28713)
+color = Color(0.897499, 0.499074, 0.629275, 1)
+
+[node name="ChainAnchor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChainAnchor"]
+shape = SubResource("CapsuleShape2D_coppc")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, 2)
+node_a = NodePath("../ChainAnchor")
+node_b = NodePath("../Segment")
+
+[node name="Segment" type="RigidBody2D" parent="."]
+position = Vector2(0, 11)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Segment"]
+texture_filter = 1
+texture = ExtResource("1_v4qrf")
+region_enabled = true
+region_rect = Rect2(216.413, 95.65, 8.29758, 16.929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segment"]
+scale = Vector2(1, 0.701476)
+shape = SubResource("CapsuleShape2D_qdave")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, 19)
+node_a = NodePath("../Segment")
+node_b = NodePath("../Segment2")
+
+[node name="Segment2" type="RigidBody2D" parent="."]
+position = Vector2(0, 27)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Segment2"]
+texture_filter = 1
+texture = ExtResource("1_v4qrf")
+region_enabled = true
+region_rect = Rect2(216.413, 95.65, 8.29758, 16.929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segment2"]
+scale = Vector2(1, 0.701476)
+shape = SubResource("CapsuleShape2D_qdave")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, 35)
+node_a = NodePath("../Segment2")
+node_b = NodePath("../Segment3")
+
+[node name="Segment3" type="RigidBody2D" parent="."]
+position = Vector2(0, 43)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Segment3"]
+texture_filter = 1
+texture = ExtResource("1_v4qrf")
+region_enabled = true
+region_rect = Rect2(216.413, 95.65, 8.29758, 16.929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segment3"]
+scale = Vector2(1, 0.701476)
+shape = SubResource("CapsuleShape2D_qdave")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(0, 51)
+node_a = NodePath("../Segment3")
+node_b = NodePath("../Segment4")
+
+[node name="Segment4" type="RigidBody2D" parent="."]
+position = Vector2(0, 59)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Segment4"]
+texture_filter = 1
+texture = ExtResource("1_v4qrf")
+region_enabled = true
+region_rect = Rect2(216.413, 95.65, 8.29758, 16.929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segment4"]
+scale = Vector2(1, 0.701476)
+shape = SubResource("CapsuleShape2D_qdave")
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2(0, 67)
+node_a = NodePath("../Segment4")
+node_b = NodePath("../Light")
+
+[node name="Light" type="RigidBody2D" parent="."]
+position = Vector2(0, 78)
+collision_layer = 6
+collision_mask = 2
+mass = 6.0
+linear_damp = 1.5
+script = ExtResource("2_5ipcf")
+
+[node name="PointLight2D" type="PointLight2D" parent="Light"]
+position = Vector2(0, 7)
+scale = Vector2(1.20597, 2.95213)
+energy = 8.39
+shadow_enabled = true
+texture = ExtResource("3_lxqno")
+offset = Vector2(0, 115)
+
+[node name="Sprite2D" type="Sprite2D" parent="Light"]
+texture_filter = 1
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_v4qrf")
+region_enabled = true
+region_rect = Rect2(233.658, 16.4744, 12.6378, 17.2948)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light"]
+shape = SubResource("CapsuleShape2D_qntcp")
+
+[node name="Button" type="Button" parent="Light"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -18.0
+offset_top = -18.0
+offset_right = -10.0
+offset_bottom = -10.0
+scale = Vector2(4.45479, 4.55864)
+
+[connection signal="button_down" from="Light/Button" to="Light" method="_on_button_button_down"]
+[connection signal="button_up" from="Light/Button" to="Light" method="_on_button_button_up"]
